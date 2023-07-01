@@ -34,8 +34,8 @@
                 <div v-for="variant in variants" :key="variant.id">
                     {{variant.color}}
                 </div>
-                <div v-for="size">
-                    {{size.join(',')}}
+                <div class="size">
+                    Size: {{size.join(',')}}
                 </div>
                 <p v-if="onSale">(on Sale)</p>
                 <p v-else>(not on Sale)</p>
