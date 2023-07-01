@@ -37,11 +37,12 @@ createApp({
       cart.value += 1;
     }
     const title = computed(() => {
-        if (onSale.value) {
-            return brand.value + ' ' + product.value + ' is on sale';
-          } else {
-            return brand.value + ' ' + product.value
-          }
+    //   return brand.value + " " + product.value;
+      if (onSale.value) {
+        return brand.value + ' ' + product.value + ' is on sale';
+      } else {
+        return brand.value + ' ' + product.value
+      }
     });
     function changeStock() {
       inStock.value = !inStock.value;
