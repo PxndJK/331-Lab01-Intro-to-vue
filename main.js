@@ -2,6 +2,7 @@ const { createApp, ref, computed } = Vue;
 
 const app = createApp({
   setup() {
+    const premium = ref(true)
     const product = ref("Boots");
     const brand = ref("SE 331");
     // const image = ref("./assets/images/socks_green.jpg");
@@ -72,7 +73,8 @@ const app = createApp({
       updateImage,
       changeStock,
       title,
-      updateVariant
+      updateVariant,
+      premium
     };
   },
 })

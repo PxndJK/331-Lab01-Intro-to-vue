@@ -15,6 +15,7 @@ const productDisplay = {
             <p v-if="inventory > 10">In Stock</p>
             <p v-else-if="inventory <= 10 && inventory > 0">Almost out of Stock</p>
             <p v-else>Out of Stock</p>
+            <p>Shipping: {{shipping}}</p>
             <ul>
                 <li v-for="detail in details">{{detail}}</li>
             </ul>
@@ -30,7 +31,17 @@ const productDisplay = {
     </div>
     `,
     
-    setup() {
+    props: {
+        premium: Boolean
+    },
+    setup(props){
+        const shipping = computed(() =>{
+            if (props.premium){
+                return 'Free'
+            } else {
+                return 30
+            }
+        })
         const product = ref('Boots')
         const brand = ref('SE 331')
         const inventory = ref(100)
@@ -79,7 +90,9 @@ const productDisplay = {
             variants,
             addToCart,
             updateImage,
-            updateVariant
+            updateVariant,
+            shipping
         }
     }
+        
 }
