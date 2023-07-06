@@ -80,6 +80,6 @@ const app = createApp({
 })
 
 app.component('product-display', productDisplay)
-
+app.component('product-details', productDetail)
 app.mount('#app')
   
