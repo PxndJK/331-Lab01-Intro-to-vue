@@ -3,8 +3,8 @@ const { createApp, ref, computed } = Vue;
 const app = createApp({
   setup() {
     const premium = ref(true)
-    function updateCart(){
-      cart.value += 1
+    function updateCart(id){
+      cart.value.push(id)
     }
     const product = ref("Boots");
     const brand = ref("SE 331");
@@ -36,7 +36,7 @@ const app = createApp({
       selectedVariant.value = index;
     }
     const selectedVariant = ref(0);
-    const cart = ref(0);
+    const cart = ref([]);
     function addToCart() {
       cart.value += 1;
     }

@@ -70,7 +70,7 @@ const productDisplay = {
 
         function addToCart() {
             cart
-            emit('add-to-cart')
+            emit('add-to-cart', variants.value[selectedVariant.value].id)
         }
 
         const title = computed(() => {
