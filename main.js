@@ -86,7 +86,7 @@ const app = createApp({
     };
   },
 });
-
+app.component("review-list", reviewList);
 app.component("product-display", productDisplay);
 app.component("product-details", productDetail);
 app.component("review-form", reviewForm);
