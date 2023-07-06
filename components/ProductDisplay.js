@@ -29,6 +29,7 @@ const productDisplay = {
             <button class="button" :disabled='!inStock' @click="removeCart"
             :class="{disabledButton: !inStock}">remove
             </button>
+            <review-form @review-submitted="addReview"></review-form>
         </div>
     </div>
     `,
@@ -37,6 +38,11 @@ const productDisplay = {
     premium: Boolean,
   },
   setup(props, { emit }) {
+    const reviews = ref([])
+    function addReview(review) {
+        reviews.value.push(review)
+        console.log(review)
+    }
     const shipping = computed(() => {
       if (props.premium) {
         return "Free";
@@ -106,6 +112,8 @@ const productDisplay = {
       updateVariant,
       shipping,
       removeCart,
+      reviews,
+      addReview
     };
   },
 };
