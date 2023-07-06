@@ -1,6 +1,5 @@
 const productDisplay = {
-
-    template:
+  template:
     /*html*/
 
     `
@@ -26,73 +25,87 @@ const productDisplay = {
             <button class="button" :disabled='!inStock' @click="addToCart"
             :class="{disabledButton: !inStock}">Add To Cart
             </button>
+
+            <button class="button" :disabled='!inStock' @click="removeCart"
+            :class="{disabledButton: !inStock}">remove
+            </button>
         </div>
     </div>
     `,
-    
-    props: {
-        premium: Boolean
-    },
-    setup(props, {emit}){
-        const shipping = computed(() =>{
-            if (props.premium){
-                return 'Free'
-            } else {
-                return 30
-            }
-        })
-        const product = ref('Boots')
-        const brand = ref('SE 331')
-        const inventory = ref(100)
-        const details = ref([
-            '50% cotton',
-            '30% wool',
-            '20% polyester'
-        ])
-        const variants = ref([
-            { id: 2234, color: 'green', image:'./assets/images/socks_green.jpg', quantity: 50 },
-            { id: 2235, color: 'blue', image:'./assets/images/socks_blue.jpg', quantity: 0 }
-        ])
-        const selectedVariant = ref(0)
-        const cart = ref(0)
 
-        function updateVariant(index) {
-            selectedVariant.value = index;
-        }
+  props: {
+    premium: Boolean,
+  },
+  setup(props, { emit }) {
+    const shipping = computed(() => {
+      if (props.premium) {
+        return "Free";
+      } else {
+        return 30;
+      }
+    });
+    const product = ref("Boots");
+    const brand = ref("SE 331");
+    const inventory = ref(100);
+    const details = ref(["50% cotton", "30% wool", "20% polyester"]);
+    const variants = ref([
+      {
+        id: 2234,
+        color: "green",
+        image: "./assets/images/socks_green.jpg",
+        quantity: 50,
+      },
+      {
+        id: 2235,
+        color: "blue",
+        image: "./assets/images/socks_blue.jpg",
+        quantity: 0,
+      },
+    ]);
+    const selectedVariant = ref(0);
+    const cart = ref(0);
 
-        const image = computed(() => {
-            return variants.value[selectedVariant.value].image
-        })
-
-        const inStock = computed(() => {
-            return variants.value[selectedVariant.value].quantity
-        })
-
-        function addToCart() {
-            cart
-            emit('add-to-cart', variants.value[selectedVariant.value].id)
-        }
-
-        const title = computed(() => {
-            return brand.value + ' ' + product.value
-        })
-
-        function updateImage(variantImage) {
-            image.value = variantImage
-        }
-
-        return {
-            title,
-            image,
-            inStock,
-            inventory,
-            details,
-            variants,
-            addToCart,
-            updateImage,
-            updateVariant,
-            shipping
-        }
+    function updateVariant(index) {
+      selectedVariant.value = index;
     }
-        
-}
+
+    const image = computed(() => {
+      return variants.value[selectedVariant.value].image;
+    });
+
+    const inStock = computed(() => {
+      return variants.value[selectedVariant.value].quantity;
+    });
+
+    function addToCart() {
+      cart;
+      emit("add-to-cart", variants.value[selectedVariant.value].id);
+    }
+
+    const removeCart = () => {
+      emit("remove-cart", selectedVariant);
+    };
+
+    const title = computed(() => {
+      return brand.value + " " + product.value;
+    });
+
+    function updateImage(variantImage) {
+      image.value = variantImage;
+    }
+
+    return {
+      title,
+      image,
+      inStock,
+      inventory,
+      details,
+      variants,
+      addToCart,
+      updateImage,
+      updateVariant,
+      shipping,
+      removeCart,
+    };
+  },
+};
