@@ -3,6 +3,9 @@ const { createApp, ref, computed } = Vue;
 const app = createApp({
   setup() {
     const premium = ref(true)
+    function updateCart(){
+      cart.value += 1
+    }
     const product = ref("Boots");
     const brand = ref("SE 331");
     // const image = ref("./assets/images/socks_green.jpg");
@@ -74,7 +77,8 @@ const app = createApp({
       changeStock,
       title,
       updateVariant,
-      premium
+      premium,
+      updateCart
     };
   },
 })

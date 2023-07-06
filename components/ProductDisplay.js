@@ -33,7 +33,7 @@ const productDisplay = {
     props: {
         premium: Boolean
     },
-    setup(props){
+    setup(props, {emit}){
         const shipping = computed(() =>{
             if (props.premium){
                 return 'Free'
@@ -69,7 +69,8 @@ const productDisplay = {
         })
 
         function addToCart() {
-            cart.value += 1
+            cart
+            emit('add-to-cart')
         }
 
         const title = computed(() => {
