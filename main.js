@@ -1,6 +1,6 @@
 const { createApp, ref, computed } = Vue;
 
-createApp({
+const app = createApp({
   setup() {
     const product = ref("Boots");
     const brand = ref("SE 331");
@@ -75,4 +75,9 @@ createApp({
       updateVariant
     };
   },
-}).mount("#app");
+})
+
+app.component('product-display', productDisplay)
+
+app.mount('#app')
+  
